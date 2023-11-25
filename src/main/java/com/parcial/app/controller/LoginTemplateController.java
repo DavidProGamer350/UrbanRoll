@@ -99,12 +99,11 @@ public class LoginTemplateController {
 
 		}
 
-		else if (cliente == null || trabajador == null || administrador == null) {
-			// Inicio de sesión fallido, mostrar mensaje de error en la página de inicio
-			model.addAttribute("authenticationFailed", true);
-			model.addAttribute("errorMessage", "Usuario o contraseña incorrectos");
-			return "/login";
-		}
+
+        else if (cliente == null || trabajador == null || administrador == null) {
+            // Inicio de sesión fallido, redirigir a la página de error
+            return "redirect:";
+        }
 		return "/login";
 	}
 
