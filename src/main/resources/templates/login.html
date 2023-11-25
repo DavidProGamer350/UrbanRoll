@@ -19,9 +19,7 @@
 <body>
 	<form action="/login/ingresar" method="post" id="login-form" class="login-form" autocomplete="on" role="main">
 		<!-- Alerta de éxito -->
-		<div class="alert alert-success">
-			<p th:if="${param.successMessage}">[[${param.successMessage}]]</p>
-		</div>
+
 		<h1 class="a11y-hidden">INICIAR SESIÓN</h1>
 		<div>
 			<label class="label-email">
@@ -31,6 +29,14 @@
 						style="margin-right: 10px;"></ion-icon>Correo</span>
 			</label>
 		</div>
+		<div class="alert alert-success">
+			<p th:if="${param.successMessage}">[[${param.successMessage}]]</p>
+		</div>
+		<center>
+			<div th:if="${param.error}" style="color: red;">
+				<p th:text="${param.error}"></p>
+			</div>
+		</center>
 		<input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
 		<label class="label-show-password" for="show-password">
 			<span>Ver Contraseña</span>
@@ -42,6 +48,7 @@
 				<span class="required"> <ion-icon name="key" style="margin-right: 10px;"></ion-icon>Contraseña</span>
 			</label>
 		</div>
+
 		<input type="submit" value="Ingresar" />
 		<div class="email">
 			<p style="color: rgb(0, 0, 0);">¿No estás registrado? <a th:href="@{/login/registro}" method="post"
@@ -60,10 +67,6 @@
 			<div class="shirt-1"></div>
 			<div class="shirt-2"></div>
 		</figure>
-		<div th:if="${param.error}" style="color: red;">
-			<p th:text="${param.error}"></p>
-		</div>
-
 
 	</form>
 </body>
