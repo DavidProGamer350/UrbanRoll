@@ -1,5 +1,7 @@
 package com.parcial.app.controller;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +59,8 @@ public class LoginTemplateController {
 			model.addAttribute("cliente", cliente);
 			if (cliente.getEstado().equals("bloqueado")) {
 				model.addAttribute("authenticationFailed", true);
-				model.addAttribute("errorMessage", "Su cuenta esta bloqueada");
-				return "/login";
+				String errorMessage = "Su cuenta esta bloqueada";
+				return "redirect:/login/?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
 			} else {
 				return "homes/home-cliente"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
 
@@ -77,8 +79,8 @@ public class LoginTemplateController {
 
 			if (trabajador.getEstado().equals("bloqueado")) {
 				model.addAttribute("authenticationFailed", true);
-				model.addAttribute("errorMessage", "Su cuenta esta bloqueada");
-				return "/login";
+				String errorMessage = "Su cuenta esta bloqueada";
+				return "redirect:/login/?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
 			} else {
 				return "homes/home-trabajador"; // Nombre de la página de inicio (por ejemplo, "inicio.html")
 
@@ -99,11 +101,12 @@ public class LoginTemplateController {
 
 		}
 
+		else if (cliente == null || trabajador == null || administrador == null) {
+			// Inicio de sesión fallido, mostrar mensaje de error en la página de inicio
+			String errorMessage = "Usuario o contraseña incorrectos";
+			return "redirect:/login/?error=" + URLEncoder.encode(errorMessage, StandardCharsets.UTF_8);
+		}
 
-        else if (cliente == null || trabajador == null || administrador == null) {
-            // Inicio de sesión fallido, redirigir a la página de error
-            return "redirect:";
-        }
 		return "/login";
 	}
 
