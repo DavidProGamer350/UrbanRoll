@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Tabla Prestamos</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/css/fondo_pagina_list.css">
+	<link rel="stylesheet" href="/css/menu.css">
+	<link rel="stylesheet" href="/css/principal.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body onload="filterTable()">
+	<header>
+		<nav>
+			<div>
+				<a th:href="@{/administradores/perfilHome/{id}(id = ${administrador.id})}">COREDEV</ion-icon></a>
+			</div>
+
+			<div>
+				<a th:href="@{/administradores/list/{id}(id = ${administrador.id})}">Administradores</a>
+			</div>
+			<div>
+				<a th:href="@{/trabajadores/list/{id}(id = ${administrador.id})}">Trabajadores</a>
+			</div>
+
+			<div>
+				<a th:href="@{/clientes/list/{id}(id = ${administrador.id})}">Clientes</a>
+			</div>
+
+
+			<div>
+				<a th:href="@{/vehiculos/list/{id}(id = ${administrador.id})}">Vehículos</a>
+			</div>
+			<div>
+				<a th:href="@{/prestamos/list/{id}(id = ${administrador.id})}">Prestamos</a>
+			</div>
+
+			<div class="dropdown">
+				<a><strong>Bienvenido:</strong> [[ ${administrador.nombre} ]]</a>
+
+				<div class="dropdown-content">
+					<a th:href="@{/administradores/perfil/{id}(id = ${administrador.id})}">Mi Perfil</a>
+					<a th:href="@{/administradores/modificar/{id}(id = ${administrador.id})}">Editar Mi Perfil</a>
+					<a th:href="@{/login/}">Cerrar Sesión <ion-icon name="log-out-outline"></ion-icon></a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<center>
+		<main>
+			<div class="contenedor_span-menu">
+				<marquee class="span-menu">
+					<span>Descubre nuestras increíbles ofertas y promociones</span>
+					<span>|</span>
+					<span>Explora la ciudad con nuestros vehículos ecológicos</span>
+					<span>|</span>
+					<span>¡Tu movilidad sostenible al alcance de tu mano!</span>
+					<span>|</span>
+					<span>Sé parte del cambio hacia una movilidad más limpia</span>
+					<span>|</span>
+					<span>Experimenta la comodidad de nuestros medios de transporte</span>
+					<span>|</span>
+					<span>Descubre las ventajas de nuestras bicicletas y patinetas eléctricas</span>
+					<span>|</span>
+					<span>¡Conduce con estilo y responsabilidad en Coredev!</span>
+					<span>|</span>
+					<span>La movilidad del futuro está aquí en Coredev</span>
+				</marquee>
+			</div>
+
+			<div class="contenedor_general">
+
+				<div class="filtros">
+					<h2>FILTROS</h2>
+					<label for="tipoVehiculoFilter">Tipo de Vehiculo:</label>
+					<select id="tipoVehiculoFilter" onchange="filterTable()">
+						<option value="">Todos</option>
+						<option value="Patineta Electrica">Patineta Electrica</option>
+						<option value="Bicicleta">Bicicleta</option>
+						<!-- Add more options for other vehicle types if needed -->
+					</select>
+					
+					<label for="fechaFilter">Fecha:</label>
+					<input type="date" id="fechaFilter" onchange="filterTable()">
+					
+					<label for="estadoFilter">Estado:</label>
+					<select id="estadoFilter" onchange="filterTable()">
+						<option value="">Todos</option>
+						<option value="Activo">Activo</option>
+						<option value="Finalizado">Finalizado</option>
+					</select>
+				</div>
+
+				<div class="contenedor_listado">
+					<h1>Prestamos</h1>
+					<div class="alert alert-success">
+						<p th:if="${param.successMessage}">[[${param.successMessage}]]</p>
+					</div>
+					<div class="divBoton">
+						<a th:href="@{/prestamos/new/{id}(id = ${administrador.id})}">Agregar</a>
+					</div>
+					<br>
+
+					<div>
+						<table>
+							<thead>
+								<tr>
+									<td><strong>Cliente</strong></td>
+									<td><strong>Vehiculo</strong></td>
+									<td><strong>Fecha</strong></td>
+									<td><strong>Valor</strong></td>
+									<td><strong>Observaciones</strong></td>
+									<td><strong>Estado</strong></td>
+									<td class="centrar_table"><strong>Editar</strong></td>
+									<td class="centrar_table"><strong>Eliminar</strong></td>
+								</tr>
+							</thead>
+							<tbody id="prestamoTableBody">
+								<tr th:each="prestamo : ${prestamos}">
+									<td>[[ ${prestamo.cliente.documento} ]]</td>
+									<td>[[ ${prestamo.vehiculo.tipo} ]]</td>
+									<td>[[ ${prestamo.fecha} ]]</td>
+									<td>[[ ${prestamo.vehiculo.valor} ]]</td>
+									<td>[[ ${prestamo.observaciones} ]]</td>
+									<td>[[ ${prestamo.estado} ]]</td>
+									<td class="centrar_table">
+										<a class="mx-3 text-warning"
+											th:href="@{/prestamos/editar/{id1}/{id2}(id1=${prestamo.id}, id2=${administrador.id})}">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+												<path
+													d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+												<path fill-rule="evenodd"
+													d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+											</svg>
+										</a>
+									</td>
+									<td class="centrar_table">
+										<a class="mx-3 text-danger"
+											th:href="@{/prestamos/eliminar/{id1}/{id2}(id1=${prestamo.id}, id2=${administrador.id})}">
+											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+												<path
+													d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+												<path
+													d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+											</svg>
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+	</center>
+
+	<footer>
+		<div class="redes_sociales">
+			<h2>Síguenos para mas contenido‎</h2>
+			<div>
+				<img src="/imagenes/Facebook.png" width="70px" height="70px">
+				<img src="/imagenes/Instagram.png" width="70px" height="70px">
+				<img src="/imagenes/Twitter.png" width="70px" height="70px">
+				<img src="/imagenes/WhatsApp.png" width="70px" height="70px">
+			</div>
+		</div>
+
+		<div style="background-color: #7dbd00; margin: 0px; padding: 10px;"></div>
+
+		<div class="contactos">
+			<section>
+				<h3>Horarios de atención</h3>
+				<p>Lunes a Viernes: 8-12pm | 2-6pm</p>
+				<p>Sabados: 8-1pm</p>
+			</section>
+			<section>
+				<h3>Contactanos</h3>
+				<p><strong>Numero telefónico:</strong> 123-456-789</p>
+				<p><strong>Correo electrónico:</strong> jhorger@gmail.com</p>
+			</section>
+			<section>
+				<h5>© 2023 Coredev. Todos los derechos reservados. Esta página web están protegidos por las leyes de
+					derechos de autor y otras leyes de propiedad intelectual. No está permitida la reproducción,
+					distribución o modificación de ningún contenido sin el permiso expreso por escrito de Coredev.</h5>
+			</section>
+		</div>
+	</footer>
+</body>
+
+<script th:inline="javascript">
+	/*<![CDATA[*/
+	function filterTable() {
+		var tipoVehiculoFilter = document.getElementById("tipoVehiculoFilter").value;
+		var fechaFilter = document.getElementById("fechaFilter").value;
+		var estadoFilter = document.getElementById("estadoFilter").value;
+
+		var tableRows = document.getElementById("prestamoTableBody").getElementsByTagName("tr");
+
+		for (var i = 0; i < tableRows.length; i++) {
+			var row = tableRows[i];
+			var tipoVehiculoColumn = row.cells[1].innerText; // Assuming Tipo de Vehiculo is in the second column
+			var fechaColumn = row.cells[2].innerText; // Assuming Fecha is in the third column
+			var estadoColumn = row.cells[5].innerText; // Assuming Estado is in the sixth column
+
+			var tipoVehiculoMatch = tipoVehiculoFilter === "" || tipoVehiculoColumn === tipoVehiculoFilter;
+			var fechaMatch = fechaFilter === "" || fechaColumn === fechaFilter;
+			var estadoMatch = estadoFilter === "" || estadoColumn === estadoFilter;
+
+			if (tipoVehiculoMatch && fechaMatch && estadoMatch) {
+				row.style.display = "";
+			} else {
+				row.style.display = "none";
+			}
+		}
+	}
+    /*]]>*/
+</script>
+
+
+</html>

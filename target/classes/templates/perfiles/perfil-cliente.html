@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Principal</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/css/fondo_pagina_form.css">
+	<link rel="stylesheet" href="/css/menu.css">
+	<link rel="stylesheet" href="/css/principal.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div>
+				<a th:href="@{/clientes/perfilHome/{id}(id = ${cliente.id})}">COREDEV</a>
+			</div>
+			<div>
+				<a th:href="@{/prestamos/listCliente/{id}(id = ${cliente.id})}">Historial de Prestamos</a>
+			</div>
+
+			<div class="dropdown">
+
+				<a>
+					<strong>Bienvenido:</strong> [[ ${cliente.nombre} ]]</a>
+
+				<div class="dropdown-content">
+					<a th:href="@{/clientes/perfil/{id}(id = ${cliente.id})}">Mi Perfil</a>
+					<a th:href="@{/clientes/modificar/{id}(id = ${cliente.id})}">Editar Mi Perfil</a>
+					<a th:href="@{/login/}">Cerrar Sesión </a>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<div class="contenedor_span-menu">
+		<marquee class="span-menu">
+			<span>Descubre nuestras increíbles ofertas y promociones</span>
+			<span>|</span>
+			<span>Explora la ciudad con nuestros vehículos ecológicos</span>
+			<span>|</span>
+			<span>¡Tu movilidad sostenible al alcance de tu mano!</span>
+			<span>|</span>
+			<span>Sé parte del cambio hacia una movilidad más limpia</span>
+			<span>|</span>
+			<span>Experimenta la comodidad de nuestros medios de transporte</span>
+			<span>|</span>
+			<span>Descubre las ventajas de nuestras bicicletas y patinetas eléctricas</span>
+			<span>|</span>
+			<span>¡Conduce con estilo y responsabilidad en Coredev!</span>
+			<span>|</span>
+			<span>La movilidad del futuro está aquí en Coredev</span>
+		</marquee>
+	</div>
+
+
+	<form th:action="@{/clientes/modificarPerfil}" th:object="${cliente}" method="post">
+		<center>
+			<img src="/imagenes/MiPerfil.png" class="miperfil imagen-con-borde">
+		</center>
+
+		<input type="hidden" th:field="*{id}">
+		<div hidden>
+			<label for="anulado">Bloqueado: </label>
+			<input type="checkbox" id="estadoCheckbox" onchange="toggleEstado()">
+			<input type="hidden" th:field="*{estado}" id="estadoHidden" th:value="${cliente.estado}">
+		</div>
+
+		<div>
+			<label for="numeroDocumento">Documento: </label>
+			<input type="text" id="numeroDocumento" th:field="*{documento}" placeholder="Numero de documento" disabled>
+		</div>
+
+		<div>
+			<label for="nombre">Nombre: </label>
+			<input type="text" id="nombre" th:field="*{nombre}" placeholder="Nombre" disabled>
+		</div>
+
+		<div>
+			<label for="apellido">Apellido: </label>
+			<input type="text" id="apellido" th:field="*{apellido}" placeholder="Apellido" disabled>
+		</div>
+
+		<div>
+			<label for="telefono">Telefono: </label>
+			<input type="text" id="telefono" th:field="*{telefono}" placeholder="Telefono" disabled>
+		</div>
+
+		<div>
+			<label for="correo">Correo: </label>
+			<input type="text" id="correo" th:field="*{correo}" placeholder="Correo" disabled>
+		</div>
+
+		<div>
+			<label for="contrasena">Contraseña: </label>
+			<input type="text" id="contrasena" th:field="*{contrasena}" placeholder="Contraseña" disabled>
+		</div>
+
+	</form>
+
+
+	<footer>
+		<div class="redes_sociales">
+			<h2>Síguenos para mas contenido‎</h2>
+			<div>
+				<img src="/imagenes/Facebook.png" width="70px" height="70px">
+				<img src="/imagenes/Instagram.png" width="70px" height="70px">
+				<img src="/imagenes/Twitter.png" width="70px" height="70px">
+				<img src="/imagenes/WhatsApp.png" width="70px" height="70px">
+			</div>
+		</div>
+
+		<div style="background-color: #7dbd00; margin: 0px; padding: 10px;"></div>
+
+		<div class="contactos">
+			<section>
+				<h3>Horarios de atención</h3>
+				<p>Lunes a Viernes: 8-12pm | 2-6pm</p>
+				<p>Sabados: 8-1pm</p>
+			</section>
+			<section>
+				<h3>Contactanos</h3>
+				<p><strong>Numero telefónico:</strong> 123-456-789</p>
+				<p><strong>Correo electrónico:</strong> jhorger@gmail.com</p>
+			</section>
+			<section>
+				<h5>© 2023 Coredev. Todos los derechos reservados. Esta página web están protegidos por las leyes de
+					derechos de autor y otras leyes de propiedad intelectual. No está permitida la reproducción,
+					distribución o modificación de ningún contenido sin el permiso expreso por escrito de Coredev.</h5>
+			</section>
+		</div>
+	</footer>
+
+</body>
+
+<script>
+	document.addEventListener("DOMContentLoaded", function () {
+		// Llama a la función para inicializar el estado del checkbox
+		inicializarCheckbox();
+	});
+
+	function inicializarCheckbox() {
+		// Obtener referencias a los campos
+		var estadoCheckbox = document.getElementById('estadoCheckbox');
+		var estadoHidden = document.getElementById('estadoHidden');
+
+		// Obtener el valor de estadoHidden
+		var estadoHiddenValue = estadoHidden.value;
+
+		// Inicializar el estado del checkbox según el valor de anuladoHidden
+		estadoCheckbox.checked = (estadoHiddenValue.toLowerCase() === 'bloqueado');
+
+	}
+
+	function toggleEstado() {
+		// Obtener referencias a los campos
+		var estadoCheckbox = document.getElementById('estadoCheckbox');
+		var estadoHidden = document.getElementById('estadoHidden');
+
+		// Actualizar el valor de anuladoHidden según el estado del checkbox
+
+		// Actualizar otros campos según sea necesario
+		if (estadoCheckbox.checked) {
+
+			estadoHidden.value = 'bloqueado';
+
+		} else {
+
+			estadoHidden.value = 'activo';
+		}
+	}
+</script>
+
+</html>

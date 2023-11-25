@@ -1,0 +1,40 @@
+@charset "ISO-8859-1";
+
+footer {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.redes_sociales {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 25px;
+	background-color: #4c387d;
+	color: #fff;
+}
+
+.contactos {
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background-color: #352757;
+	color: #fff;
+}
+
+footer div img {
+	margin-right: 10px;
+	margin-left: 10px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+	border-radius: 20px;
+}
+
+footer div section {
+	width: 33%;
+}

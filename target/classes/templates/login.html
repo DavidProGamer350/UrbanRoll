@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Iniciar Sesión</title>
+	<link rel="stylesheet" th:href="@{/css/login.css}">
+	<link rel="stylesheet" href="https://unpkg.com/ionicons@7.1.0/dist/css/ionicons.min.css">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+	<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+
+<body>
+	<form action="/login/ingresar" method="post" id="login-form" class="login-form" autocomplete="on" role="main">
+			<!-- Alerta de éxito -->
+	<div class="alert alert-success">
+		<p th:if="${param.successMessage}">[[${param.successMessage}]]</p>
+	</div>
+		<h1 class="a11y-hidden">INICIAR SESIÓN</h1>
+		<div>
+			<label class="label-email">
+				<input type="text" class="text" name="correo" placeholder="correo" tabindex="1" required style="
+					box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;" />
+				<span class="required"> <ion-icon name="person-outline"
+						style="margin-right: 10px;"></ion-icon>Correo</span>
+			</label>
+		</div>
+		<input type="checkbox" name="show-password" class="show-password a11y-hidden" id="show-password" tabindex="3" />
+		<label class="label-show-password" for="show-password">
+			<span>Ver Contraseña</span>
+		</label>
+		<div>
+			<label class="label-password">
+				<input type="text" class="text" name="contrasena" placeholder="contrasena" tabindex="2" required
+					style=" box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;" />
+				<span class="required"> <ion-icon name="key" style="margin-right: 10px;"></ion-icon>Contraseña</span>
+			</label>
+		</div>
+		<input type="submit" value="Ingresar" />
+		<div class="email">
+			<p style="color: rgb(0, 0, 0);">¿No estás registrado? <a th:href="@{/login/registro}" method="post"
+					style="cursor: pointer; color: rgb(0, 0, 0); text-decoration: underline; color: blue;">Regístrate</a></p>
+		</div>
+		<figure aria-hidden="true">
+			<div class="person-body"></div>
+			<div class="neck skin"></div>
+			<div class="head skin">
+				<div class="eyes"></div>
+				<div class="mouth"></div>
+			</div>
+			<div class="hair"></div>
+			<div class="ears"></div>
+			<div class="shirt-1"></div>
+			<div class="shirt-2"></div>
+		</figure>
+		<div th:if="${authenticationFailed}" style="color: red;">
+			<p th:text="${errorMessage}"></p>
+		</div>
+
+	</form>
+</body>
+
+</html>
