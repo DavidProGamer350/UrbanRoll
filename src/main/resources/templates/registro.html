@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Registrarse</title>
+	<link rel="stylesheet" th:href="@{/css/registro.css}">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+
+	</script>
+</head>
+
+<body>
+
+
+	<form th:action="@{/clientes/guardar}" th:object="${cliente}" method="post" id="login-form" class="login-form">
+		<center>
+			<h1 class="a11y-hidden">REGISTRO</h1>
+		</center>
+
+		<input type="hidden" th:field="*{id}">
+		<div class="grupo" hidden>
+			<label for="anulado">Bloqueado: </label>
+			<input class="custom-checkbox-input" type="checkbox" id="estadoCheckbox" onchange="toggleEstado()">
+			<input type="hidden" th:field="*{estado}" id="estadoHidden" th:value="${cliente.estado}">
+		</div>
+		<div class="grupo">
+			<label class="required" for="numeroDocumento">Documento: </label>
+			<input type="text" class="text" id="numeroDocumento" th:field="*{documento}"
+				placeholder="Numero de documento" required>
+		</div>
+		<div class="grupo">
+			<label class="required" for="nombre">Nombre: </label>
+			<input type="text" class="text" id="nombre" th:field="*{nombre}" placeholder="Nombre" required>
+		</div>
+		<div class="grupo">
+			<label class="required" for="apellido">Apellido: </label>
+			<input type="text" class="text" id="apellido" th:field="*{apellido}" placeholder="Apellido" required>
+		</div>
+		<div class="grupo">
+			<label class="required" for="telefono">Telefono: </label>
+			<input type="text" class="text" id="telefono" th:field="*{telefono}" placeholder="Telefono" required>
+		</div>
+		<div class="grupo">
+			<label class="required" for="correo">Correo: </label>
+			<input type="text" class="text" id="correo" th:field="*{correo}" placeholder="Correo" required>
+		</div>
+		<div class="grupo">
+			<label class="required" for="contrasena">Contraseña: </label>
+			<input type="text" class="text" id="contrasena" th:field="*{contrasena}" placeholder="Contraseña" required>
+		</div>
+		<center>
+			<div>
+				<button class="button" type="submit">Registrarse</button>
+			</div>
+		</center>
+
+	</form>
+
+	<!-- Alerta de éxito -->
+	<div class="alert alert-success">
+		<p th:if="${param.successMessage}">[[${param.successMessage}]]</p>
+	</div>
+
+</body>
+
+</html>

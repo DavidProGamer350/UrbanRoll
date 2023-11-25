@@ -1,0 +1,120 @@
+@charset "ISO-8859-1";
+
+.caja_fondo {
+	width: 100%;
+	height: 25px;
+	background-color: #7dbd00;
+	position: absolute;
+	z-index: -1;
+	margin-top: 193px;
+}
+
+.titulo {
+	border-bottom: 1px solid #e2e2e2;
+}
+
+.titulo_grande {
+	font-size: 40px;
+	padding: 0px;
+	margin: 0px;
+	margin-bottom: 5px;
+	margin-top: 88px;
+}
+
+.sedes {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 80%;
+	margin-bottom: 80px;
+}
+
+.sedes div {
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 5px;
+	background-color: #fff;
+	padding: 15px;
+	padding-bottom: 10px;
+}
+
+.tipos_vehiculos {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin-top: 50px;
+	width: 80%;
+}
+
+.vehiculo {
+	display: flex;
+	flex-direction: row;
+	padding: 15px;
+	padding-bottom: 10px;
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 5px;
+	width: 500px;
+	background-color: white;
+}
+
+.info_vehiculo {
+	text-align: left;
+	margin-left: 20px;
+	width: 42%;
+}
+
+.info_corporativa {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-bottom: 70px;
+	padding-top: 50px;
+	width: 80%;
+	border-top: 2px solid;
+}
+
+.info_corporativa div {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-bottom: 15px;
+	width: 80%;
+}
+
+.info_corporativa div div {
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 5px;
+	padding: 50px;
+	width: 50%;
+	background-color: white;
+}
+
+.info_corporativa div section {
+	padding: 0px;
+	margin: 0px;
+	width: 50%;
+	font-size: 40px;
+}
+
+.info_corporativa div section h1 {
+	padding: 0px;
+	margin: 0px;
+}
+
+.noticias {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 80%;
+	margin-bottom: 70px;
+}
+
+.noticias div {
+	border: 1px solid rgb(192, 192, 192);
+	border-radius: 5px;
+	padding: 25px;
+	padding-bottom: 5px;
+	background-color: white;
+	width: 25%;
+}

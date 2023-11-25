@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Principal</title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="/css/fondo_pagina.css">
+	<link rel="stylesheet" href="/css/menu.css">
+	<link rel="stylesheet" href="/css/principal.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div>
+				<a th:href="@{/}">COREDEV</a>
+			</div>
+
+			<div>
+				<a th:href="@{/login/}">Iniciar Sesión 
+				</a>
+			</div>
+		</nav>
+	</header>
+
+	<center>
+		<main>
+			<div class="contenedor_span-menu">
+				<marquee class="span-menu">
+					<span>Descubre nuestras increíbles ofertas y promociones</span>
+					<span>|</span>
+					<span>Explora la ciudad con nuestros vehículos ecológicos</span>
+					<span>|</span>
+					<span>¡Tu movilidad sostenible al alcance de tu mano!</span>
+					<span>|</span>
+					<span>Sé parte del cambio hacia una movilidad más limpia</span>
+					<span>|</span>
+					<span>Experimenta la comodidad de nuestros medios de transporte</span>
+					<span>|</span>
+					<span>Descubre las ventajas de nuestras bicicletas y patinetas eléctricas</span>
+					<span>|</span>
+					<span>¡Conduce con estilo y responsabilidad en Coredev!</span>
+					<span>|</span>
+					<span>La movilidad del futuro está aquí en Coredev</span>
+				</marquee>
+			</div>
+
+			<div class="caja_fondo">
+
+			</div>
+
+			<h1 class="titulo_grande">SEDES PRINCIPALES</h1>
+			<div class="sedes">
+
+				<div>
+					<img src="/imagenes/Sede Bucaramanga.png" width="350px" height="200px">
+					<h2 class="titulo">Bucaramanga</h2>
+				</div>
+
+				<div>
+					<img src="/imagenes/Sede Floridablanca.png" width="350px" height="200px">
+					<h2 class="titulo">Floridablanca</h2>
+				</div>
+
+				<div>
+					<img src="/imagenes/Sede Giron.jpg" width="350px" height="200px">
+					<h2 class="titulo">Girón</h2>
+				</div>
+			</div>
+
+			<div>
+				<h1 class="titulo_grande">RUTAS DISPONIBLES</h1>
+				<iframe src="https://www.google.com/maps/d/embed?mid=1YASXA3L421wvZJyh-2uWGnJ157fn2xc&ehbc=2E312F"
+					width="1040" height="720"></iframe>
+			</div>
+
+			<div class="tipos_vehiculos">
+				<div class="vehiculo">
+					<img src="/imagenes/Patineta Electrica.png" width="300px" height="200px">
+
+					<div class="info_vehiculo">
+						<h3 class="titulo">PATINETAS ELECTRICAS</h3>
+						<p>Vehículos de movilidad personal impulsados por un motor eléctrico, ideales para
+							desplazamientos cortos y ágiles en la ciudad</p>
+						<p><strong>Precio:</strong> $2.000 COP</p>
+					</div>
+				</div>
+
+				<div class="vehiculo">
+					<img src="/imagenes/Bicicleta.jpg" width="300px" height="200px">
+
+					<div class="info_vehiculo">
+						<h3 class="titulo">BICICLETAS</h3>
+						<p>Medios de transporte ecológicos de dos ruedas, util para uso recreativo, ciclismo en montaña
+							y de poco costo</p>
+						<p><strong>Precio:</strong> $1.000 COP</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="info_corporativa">
+				<div style="display: flex; justify-content: flex-start;">
+					<div>
+						<p>Facilitar la movilidad urbana sostenible y contribuir a la mejora de la calidad de vida en la
+							ciudad, ofreciendo a los habitantes una alternativa eficiente, limpia y práctica para el
+							transporte personal a través de una plataforma de préstamo de bicicletas y patinetas
+							eléctricas de fácil acceso y uso.</p>
+					</div>
+					<section>
+						<img src="/imagenes/Mision.png" width="150px" height="148px">
+						<h1>MISION</h1>
+					</section>
+				</div>
+
+				<div>
+					<section>
+						<img src="/imagenes/Vision.png" width="150px" height="148px">
+						<h1>VISION</h1>
+					</section>
+					<div>
+						<p>Ser líderes en la promoción de la movilidad urbana sostenible a través de soluciones
+							innovadoras y accesibles. Queremos ser reconocidos como la opción preferida de la comunidad
+							urbana para la movilidad personal, ayudando a reducir la congestión del tráfico y la
+							contaminación ambiental.</p>
+					</div>
+				</div>
+			</div>
+
+			<h1 class="titulo_grande">MÁS NOTICIAS</h1>
+			<div class="noticias">
+
+				<div>
+					<img src="/imagenes/Noticia1.png" width="300px" height="170px">
+					<h4 class="titulo">Rutas alternas para las horas pico</h4>
+					<p>El gobierno de la ciudad implementará rutas alternas para aliviar la congestión durante las horas
+						pico de tráfico.</p>
+				</div>
+
+				<div>
+					<img src="/imagenes/Noticia2.jpg" width="300px" height="170px">
+					<h4 class="titulo">Alcalde promueve movilizaciones ecologicas</h4>
+					<p>Se compromete a fomentar movilizaciones ecológicas para concienciar sobre la importancia de la
+						sostenibilidad ambiental.</p>
+				</div>
+
+				<div>
+					<img src="/imagenes/Noticia3.png" width="300px" height="170px">
+					<h4 class="titulo">Medios de transporte ideal para este 2023</h4>
+					<p>Medios de transporte ideales para reducir la congestión urbana y promover la sostenibilidad
+						ambiental.</p>
+				</div>
+
+			</div>
+		</main>
+	</center>
+
+
+	<footer>
+		<div class="redes_sociales">
+			<h2>Síguenos para mas contenido‎</h2>
+			<div>
+				<img src="/imagenes/Facebook.png" width="70px" height="70px">
+				<img src="/imagenes/Instagram.png" width="70px" height="70px">
+				<img src="/imagenes/Twitter.png" width="70px" height="70px">
+				<img src="/imagenes/WhatsApp.png" width="70px" height="70px">
+			</div>
+		</div>
+
+		<div style="background-color: #7dbd00; margin: 0px; padding: 10px;"></div>
+
+		<div class="contactos">
+			<section>
+				<h3>Horarios de atención</h3>
+				<p>Lunes a Viernes: 8-12pm | 2-6pm</p>
+				<p>Sabados: 8-1pm</p>
+			</section>
+			<section>
+				<h3>Contactanos</h3>
+				<p><strong>Numero telefónico:</strong> 123-456-789</p>
+				<p><strong>Correo electrónico:</strong> jhorger@gmail.com</p>
+			</section>
+			<section>
+				<h5>© 2023 Coredev. Todos los derechos reservados. Esta página web están protegidos por las leyes de
+					derechos de autor y otras leyes de propiedad intelectual. No está permitida la reproducción,
+					distribución o modificación de ningún contenido sin el permiso expreso por escrito de Coredev.</h5>
+			</section>
+		</div>
+	</footer>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Formulario Prestamo</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="/css/fondo_pagina_form.css">
+	<link rel="stylesheet" href="/css/menu.css">
+	<link rel="stylesheet" href="/css/principal.css">
+	<link rel="stylesheet" href="/css/footer.css">
+	<link rel="shortcut icon" th:href="@{/imagenes/Icono.png}" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<header>
+		<nav>
+			<div>
+				<a th:href="@{/administradores/perfilHome/{id}(id = ${administrador.id})}">COREDEV</ion-icon></a>
+			</div>
+
+			<div>
+				<a th:href="@{/administradores/list/{id}(id = ${administrador.id})}">Administradores</a>
+			</div>
+			<div>
+				<a th:href="@{/trabajadores/list/{id}(id = ${administrador.id})}">Trabajadores</a>
+			</div>
+
+			<div>
+				<a th:href="@{/clientes/list/{id}(id = ${administrador.id})}">Clientes</a>
+			</div>
+
+
+			<div>
+				<a th:href="@{/vehiculos/list/{id}(id = ${administrador.id})}">Vehículos</a>
+			</div>
+			<div>
+				<a th:href="@{/prestamos/list/{id}(id = ${administrador.id})}">Prestamos</a>
+			</div>
+
+			<div class="dropdown">
+				<a><strong>Bienvenido:</strong> [[ ${administrador.nombre} ]]</a>
+
+				<div class="dropdown-content">
+					<a th:href="@{/administradores/perfil/{id}(id = ${administrador.id})}">Mi Perfil</a>
+					<a th:href="@{/administradores/modificar/{id}(id = ${administrador.id})}">Editar Mi Perfil</a>
+					<a th:href="@{/login/}">Cerrar Sesión <ion-icon name="log-out-outline"></ion-icon></a>
+				</div>
+			</div>
+		</nav>
+	</header>
+	<center>
+		<main>
+			<div class="contenedor_span-menu">
+				<marquee class="span-menu">
+					<span>Descubre nuestras increíbles ofertas y promociones</span>
+					<span>|</span>
+					<span>Explora la ciudad con nuestros vehículos ecológicos</span>
+					<span>|</span>
+					<span>¡Tu movilidad sostenible al alcance de tu mano!</span>
+					<span>|</span>
+					<span>Sé parte del cambio hacia una movilidad más limpia</span>
+					<span>|</span>
+					<span>Experimenta la comodidad de nuestros medios de transporte</span>
+					<span>|</span>
+					<span>Descubre las ventajas de nuestras bicicletas y patinetas eléctricas</span>
+					<span>|</span>
+					<span>¡Conduce con estilo y responsabilidad en Coredev!</span>
+					<span>|</span>
+					<span>La movilidad del futuro está aquí en Coredev</span>
+				</marquee>
+			</div>
+
+			<form th:action="@{/prestamos/salvar/{id}(id = ${administrador.id})}" th:object="${prestamo}" method="post">
+				<input type="hidden" th:field="*{id}">
+				<div>
+					<label for="cliente">Cliente: </label>
+					<select id="cliente" th:field="*{cliente}">
+						<option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.documento}"
+							th:data-estado="${cliente.estado}"></option>
+					</select>
+				</div>
+				<div id="error-message" class="alert alert-danger" style="display: none;">
+					El cliente está bloqueado y no se puede guardar el alquiler.
+				</div>
+				<div>
+					<label for="vehiculo">Vehiculo: </label>
+					<select id="vehiculo" th:field="*{vehiculo}">
+						<option th:each="vehiculo : ${vehiculos}" th:value="${vehiculo.id}"
+							th:text="${vehiculo.tipo}" th:data-valor="${vehiculo.valor}">
+						</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="valor">Valor del Vehículo Seleccionado: </label>
+					<input type="text" id="valor" readonly>
+				</div>
+
+				<div>
+					<label for="fecha">Fecha: </label>
+					<input type="date" id="fecha" th:field="*{fecha}" th:value="*{fecha}">
+				</div>
+
+				<div>
+					<label for="observaciones">Observaciones: </label>
+					<input type="text" id="observaciones" th:field="*{observaciones}" placeholder="Observaciones"
+						required>
+				</div>
+				<div class="grupo">
+					<label for="anulado">Finalizado: </label>
+					<input class="custom-checkbox-input" type="checkbox" id="estadoCheckbox" onchange="toggleEstado()">
+					<input type="hidden" th:field="*{estado}" id="estadoHidden" th:value="${prestamo.estado}">
+				</div>
+				<div class="alert alert-danger" th:if="${param.alerta}" th:text="${param.alerta}"></div>
+				<div class="grupo-b">
+					<button id="submitButton" class="button" type="submit">Agregar</button>
+				</div>
+			</form>
+		</main>
+	</center>
+
+
+	<footer>
+		<div class="redes_sociales">
+			<h2>Síguenos para mas contenido‎</h2>
+			<div>
+				<img src="/imagenes/Facebook.png" width="70px" height="70px">
+				<img src="/imagenes/Instagram.png" width="70px" height="70px">
+				<img src="/imagenes/Twitter.png" width="70px" height="70px">
+				<img src="/imagenes/WhatsApp.png" width="70px" height="70px">
+			</div>
+		</div>
+
+		<div style="background-color: #7dbd00; margin: 0px; padding: 10px;"></div>
+
+		<div class="contactos">
+			<section>
+				<h3>Horarios de atención</h3>
+				<p>Lunes a Viernes: 8-12pm | 2-6pm</p>
+				<p>Sabados: 8-1pm</p>
+			</section>
+			<section>
+				<h3>Contactanos</h3>
+				<p><strong>Numero telefónico:</strong> 123-456-789</p>
+				<p><strong>Correo electrónico:</strong> jhorger@gmail.com</p>
+			</section>
+			<section>
+				<h5>© 2023 Coredev. Todos los derechos reservados. Esta página web están protegidos por las leyes de
+					derechos de autor y otras leyes de propiedad intelectual. No está permitida la reproducción,
+					distribución o modificación de ningún contenido sin el permiso expreso por escrito de Coredev.</h5>
+			</section>
+		</div>
+	</footer>
+
+	<!-- manejo del estado con checkBox -->
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// Llama a la función para inicializar el estado del checkbox
+			inicializarCheckbox();
+		});
+
+		function inicializarCheckbox() {
+			// Obtener referencias a los campos
+			var estadoCheckbox = document.getElementById('estadoCheckbox');
+			var estadoHidden = document.getElementById('estadoHidden');
+
+			// Obtener el valor de estadoHidden
+			var estadoHiddenValue = estadoHidden.value;
+
+			// Inicializar el estado del checkbox según el valor de anuladoHidden
+			estadoCheckbox.checked = (estadoHiddenValue.toLowerCase() === 'finalizado');
+
+		}
+
+		function toggleEstado() {
+			// Obtener referencias a los campos
+			var estadoCheckbox = document.getElementById('estadoCheckbox');
+			var estadoHidden = document.getElementById('estadoHidden');
+
+			// Actualizar el valor de anuladoHidden según el estado del checkbox
+
+			// Actualizar otros campos según sea necesario
+			if (estadoCheckbox.checked) {
+
+				estadoHidden.value = 'Finalizado';
+
+			} else {
+
+				estadoHidden.value = 'Activo';
+			}
+		}
+
+	</script>
+
+	<script>
+		var vehiculoSelect = document.getElementById('vehiculo');
+		var valorInput = document.getElementById('valor');
+
+		vehiculoSelect.addEventListener('change', actualizarValor);
+		function actualizarValor() {
+			var selectedOption = vehiculoSelect.options[vehiculoSelect.selectedIndex];
+			var valor = selectedOption.getAttribute('data-valor');
+			valorInput.value = valor;
+		}
+
+		actualizarValor();
+	</script>
+
+</body>
+
+</html>
